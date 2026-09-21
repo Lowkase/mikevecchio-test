@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title5 desc5">
+  <title id="title5">Mike Vecchio, RMT</title>
+  <desc id="desc5">Placeholder social sharing image. Replace with real photography once available.</desc>
+  <defs>
+    <linearGradient id="paper5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F5F0E5"/>
+      <stop offset="1" stop-color="#E7DEC9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#paper5)"/>
+  <g fill="none" stroke="#3C4E33" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.55">
+    <rect x="860" y="120" width="260" height="60" rx="10"/>
+    <path d="M860 120c15 -18 245 -18 260 0"/>
+    <line x1="890" y1="180" x2="890" y2="300"/>
+    <line x1="1090" y1="180" x2="1090" y2="300"/>
+    <circle cx="150" cy="480" r="90"/>
+    <circle cx="150" cy="480" r="55"/>
+  </g>
+  <text x="90" y="270" font-family="Georgia, serif" font-size="72" font-weight="600" fill="#24221D">Mike Vecchio, RMT</text>
+  <text x="90" y="330" font-family="Georgia, serif" font-size="34" fill="#5B564C">Registered Massage Therapy</text>
+  <text x="90" y="378" font-family="Georgia, serif" font-size="34" fill="#5B564C">St. Thomas, Ontario</text>
+  <rect x="90" y="430" width="360" height="3" fill="#A15A34"/>
+  <text x="90" y="480" font-family="Georgia, serif" font-size="28" fill="#A15A34">Mobile RMT also available</text>
+</svg>

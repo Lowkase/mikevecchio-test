@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder: Mike setting up his portable massage table</title>
+  <desc id="desc">Illustrative placeholder. Replace with a real photo of Mike carrying or setting up his portable treatment table.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F4EFE6"/>
+      <stop offset="1" stop-color="#EAE2D2"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#paper)"/>
+  <g fill="none" stroke="#46583C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.75">
+    <!-- folded massage table -->
+    <rect x="205" y="230" width="230" height="26" rx="6"/>
+    <line x1="215" y1="256" x2="215" y2="300"/>
+    <line x1="425" y1="256" x2="425" y2="300"/>
+    <line x1="205" y1="300" x2="435" y2="300"/>
+    <!-- carry strap -->
+    <path d="M240 230 C240 180 400 180 400 230"/>
+    <!-- simple figure carrying it -->
+    <circle cx="320" cy="150" r="22"/>
+    <path d="M320 172 L320 225"/>
+    <path d="M320 190 L275 232"/>
+    <path d="M320 190 L365 232"/>
+    <path d="M320 225 L295 300"/>
+    <path d="M320 225 L345 300"/>
+  </g>
+  <text x="320" y="400" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#6B6355">Photo coming soon — Mike with his mobile setup</text>
+</svg>

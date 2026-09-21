@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title2 desc2">
+  <title id="title2">Placeholder: massage table set up in a home environment</title>
+  <desc id="desc2">Illustrative placeholder. Replace with a real photo of a treatment table set up in a bright, realistic residential room.</desc>
+  <defs>
+    <linearGradient id="paper2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4EFE6"/>
+      <stop offset="1" stop-color="#E6DDCB"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#paper2)"/>
+  <g fill="none" stroke="#46583C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.75">
+    <!-- window -->
+    <rect x="60" y="60" width="140" height="180" rx="4"/>
+    <line x1="130" y1="60" x2="130" y2="240"/>
+    <line x1="60" y1="150" x2="200" y2="150"/>
+    <!-- floor line -->
+    <line x1="20" y1="360" x2="620" y2="360"/>
+    <!-- treatment table -->
+    <rect x="280" y="300" width="260" height="30" rx="6"/>
+    <line x1="292" y1="330" x2="292" y2="360"/>
+    <line x1="528" y1="330" x2="528" y2="360"/>
+    <!-- small side table with supplies -->
+    <rect x="190" y="330" width="50" height="30" rx="3"/>
+    <line x1="198" y1="360" x2="198" y2="378"/>
+    <line x1="232" y1="360" x2="232" y2="378"/>
+  </g>
+  <text x="320" y="430" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#6B6355">Photo coming soon — table set up in a client's home</text>
+</svg>
