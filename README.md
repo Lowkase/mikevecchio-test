@@ -50,9 +50,7 @@ Then visit http://localhost:8000.
   `mikevecchiormt.clinicsense.com` across the repo.
 - **Phone number** — `519-859-1419` / `tel:+15198591419`, used throughout
   (nav, footer, hero, FAQ copy, JSON-LD `telephone`).
-- **Email** — `hello@mikevecchiormt.ca` is a **placeholder** (see Content
-  Verification below). Search for `hello@mikevecchiormt.ca` to replace it
-  once Mike confirms his real inbox.
+- **Email** — `hello@mikevecchiormt.ca` is a **development placeholder only**. It is not linked on public pages. Add Mike's confirmed inbox to the Contact page and all footers when available.
 - **Pricing** — St. Thomas practice pricing ($70/$90/$110) and Mobile RMT
   pricing ($150 first treatment, $130 each additional back-to-back
   treatment, both including HST) appear in: the homepage pricing section,
@@ -60,16 +58,15 @@ Then visit http://localhost:8000.
   `/massage-therapy/` and `/mobile-rmt/` pricing sections, the FAQ answers,
   and the JSON-LD `Offer` entries on each page. Search for `$70`, `$110`,
   `$150`, `$130` to find every instance if prices change.
-- **Service area copy** — "St. Thomas, South London and surrounding areas"
+- **Service area copy** — "St. Thomas, surrounding areas, and London"
   (with White Oaks called out specifically) appears on the homepage, the
-  Mobile RMT page's dedicated service-area section, and the FAQ. There is no
+  Mobile RMT page's dedicated service-area section, and the FAQ. Travel fees
+  depend on the address and are confirmed before booking. There is no
   per-city pricing table by design (see project brief: the mobile offering
   is intentionally simple while Mike gauges demand).
 - **Mobile form submission adapter** — see `js/mobile-form.js`. The
   `submitMobileRequest()` function is the single seam between the form UI
-  and a backend; right now it resolves after a short simulated delay and
-  sends nothing anywhere. The file's top comment documents drop-in adapters
-  for Formspree, Netlify Forms, or a custom serverless endpoint.
+  and a backend; it is disabled until `MOBILE_REQUEST_ENDPOINT` is set. The Contact page directs visitors to call or text in the meantime. A successful response from the configured endpoint is required before a success message appears.
 
 ## Content verification (needs Mike's confirmation)
 
@@ -82,15 +79,12 @@ per the project brief. Before launch, confirm:
 1. **HST treatment of the $70/$90/$110 practice prices** — update the
    pricing sections/JSON-LD once confirmed (search for `30 minutes`, `45
    minutes`, `60 minutes` near "$70"/"$90"/"$110").
-2. **Email address** — `hello@mikevecchiormt.ca` is a placeholder, not a
-   verified inbox. Replace it (footer, `/contact/`, and the "Talk to Mike"
-   mailto link) once Mike gives you his real address.
+2. **Email address** — `hello@mikevecchiormt.ca` is an internal placeholder, not a
+   verified inbox. Public email links are withheld until Mike provides his real address.
 3. **MYFM recognition** — the old site displayed a "myfm-spirit-award.png"
    graphic captioned "Voted best Massage Therapist." No award year,
    category, or official name could be confirmed from the source material,
-   so `/about/` now uses softer, non-specific wording ("Recognized locally
-   by MYFM listeners...") and flags the exact details as unconfirmed inline.
-   Update or remove this once the specifics are confirmed.
+   so the public recognition section is withheld until the specifics are confirmed.
 4. **St. Thomas practice street address** — not published on the previous
    site or anywhere in this redesign (by design, pending Mike's
    preference); FAQ states it's "shared when you book." Add it explicitly
@@ -101,9 +95,7 @@ per the project brief. Before launch, confirm:
 
 ## Asset list (real photography still needed)
 
-All imagery is placeholder. Two real photos were carried over from the
-previous site because they're safe to reuse (Mike's own portrait and a
-community-recognition graphic); everything else is an illustrated SVG
+Most imagery is placeholder. Mike's portrait was carried over from the previous site; everything else is an illustrated SVG
 placeholder so the layout can be exercised without needing real photos yet.
 Note: the previous site's hero/treatment-room JPEG was **not** reused here —
 it framed a client mid-treatment, which isn't appropriate to feature
@@ -116,7 +108,7 @@ prominently in a redesign, so it was replaced with an illustrated stand-in.
 | `images/mike-portrait-placeholder.jpg` (real, reused) | Homepage "Meet Mike", `/about/`, social sharing | A warm, straightforward portrait. Current file is 474×600 (3:4) — keep that ratio or update the CSS `aspect-ratio` if it changes. |
 | `images/mobile-setup-placeholder.svg` | Homepage Mobile RMT feature, `/mobile-rmt/` | Photo of Mike carrying/setting up his portable table. ~4:3. |
 | `images/mobile-environment-placeholder.svg` | `/mobile-rmt/` "What is Mobile RMT?" | Table set up in a bright, realistic residential room. ~4:3. |
-| `images/myfm-spirit-award.png` (real, reused) | `/about/` | Keep, replace, or remove pending confirmation — see Content Verification #3. |
+| `images/myfm-spirit-award.png` (real, unused) | Not currently shown | Use only after confirming the exact recognition details. |
 | `images/og-image-placeholder.svg` | Not currently linked | A from-scratch source file for a proper 1200×630 social-sharing image. Meta tags currently point at the portrait photo instead (see below); export this SVG (or a real photo) to a 1200×630 JPG/PNG and update `og:image`/`twitter:image` across all five pages once ready. |
 | `favicon.png` (real, reused) | All pages | Fine to keep, or replace with an updated mark. |
 
@@ -126,7 +118,7 @@ nobody mistakes them for final photography.
 
 ## Mobile enquiry form
 
-`/contact/#mobile-request` — collects name, email, phone, general
+`/contact/#mobile-request` — form is hidden until a real endpoint is configured. Once enabled it collects name, email, phone, general
 location/postal code, number of people, preferred day/time, and an optional
 message. Deliberately does **not** ask for medical history.
 
@@ -146,9 +138,7 @@ message. Deliberately does **not** ask for medical history.
 
 ## Analytics
 
-`js/analytics.js` exposes `window.mvAnalytics.track(name, data)` and does
-**not** load any third-party script — events are queued on
-`window.__mvAnalyticsQueue` until a provider is wired up (see the comment
+`js/analytics.js` exposes `window.mvAnalytics.track(name, data)` and sends events to the GA4 `gtag` function already loaded by the pages. It also keeps a local event queue for debugging (see the comment
 block at the top of the file for a GA4 example). Elements can also be
 wired up declaratively with `data-analytics-event="..."` plus optional
 `data-analytics-*` context attributes, handled automatically via event
@@ -164,7 +154,8 @@ Events currently fired around the site:
 | `mobile_form_start` | The visitor starts typing into the mobile enquiry form |
 | `mobile_form_submit` | The mobile enquiry form successfully submits |
 | `phone_click` | A `tel:` link is clicked |
-| `email_click` | A `mailto:` link is clicked |
+| `email_click` | Reserved for confirmed email links once added |
+| `practice_service_click` | The practice service link is clicked |
 | `facility_cta_click` | A "Talk to Mike" (groups/facilities) link is clicked |
 
 Every tracked element carries `data-analytics-location` for context (e.g.

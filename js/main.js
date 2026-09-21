@@ -7,6 +7,7 @@
  */
 (function () {
   'use strict';
+  document.documentElement.classList.add('js-enabled');
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -20,12 +21,14 @@
 
     function closeMenu() {
       toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
       menu.classList.remove('is-open');
       document.body.classList.remove('nav-open');
     }
 
     function openMenu() {
       toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
       menu.classList.add('is-open');
       document.body.classList.add('nav-open');
       const firstLink = menu.querySelector('a, button');
@@ -48,8 +51,9 @@
       }
     });
 
+    // Keep in sync with the nav breakpoint in css/styles.css.
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 880) closeMenu();
+      if (window.innerWidth > 1140) closeMenu();
     });
   }
 
@@ -62,12 +66,13 @@
       const button = item.querySelector('.faq-question');
       const panel = item.querySelector('.faq-answer');
       if (!button || !panel) return;
+      panel.hidden = true;
 
       button.addEventListener('click', function () {
         const isOpen = item.classList.contains('is-open');
         item.classList.toggle('is-open', !isOpen);
         button.setAttribute('aria-expanded', String(!isOpen));
-        panel.hidden = false; // grid-rows transition handles the visual collapse
+        panel.hidden = isOpen;
       });
     });
   }
@@ -110,6 +115,7 @@
     const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         bar.classList.toggle('is-visible', !entry.isIntersecting);
+        document.body.classList.toggle('has-sticky-cta', !entry.isIntersecting);
       });
     }, { threshold: 0 });
 

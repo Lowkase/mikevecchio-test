@@ -100,6 +100,7 @@
    2. RESET / BASE
    -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -295,6 +296,16 @@ hr {
   backdrop-filter: saturate(140%) blur(8px);
 }
 
+/*
+ * The header's row (logo + 5 nav links + phone + CTA button) needs more
+ * horizontal room than the page's normal 1240px content measure comfortably
+ * allows without crowding. Giving the header its own slightly wider
+ * container avoids trimming the nav down to the point of feeling cramped.
+ */
+.site-header .container {
+  max-width: 1360px;
+}
+
 .site-header__bar {
   display: flex;
   align-items: center;
@@ -317,13 +328,13 @@ hr {
 .nav-primary {
   display: flex;
   align-items: center;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  gap: var(--space-5);
 }
 
 a.nav-phone-icon {
@@ -334,14 +345,16 @@ a.nav-phone-icon {
 
 .nav-links {
   display: flex;
+  align-items: center;
   flex-wrap: nowrap;
-  gap: var(--space-5);
+  gap: 1.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
   font-size: var(--fs-body-sm);
 }
 .nav-links li { flex-shrink: 0; }
+.nav-links li + li { margin-top: 0; }
 .nav-links a {
   display: inline-block;
   white-space: nowrap;
@@ -356,7 +369,7 @@ a.nav-phone-icon {
   border-bottom-color: var(--color-forest);
 }
 
-.nav-actions { display: flex; align-items: center; gap: var(--space-4); }
+.nav-actions { display: flex; align-items: center; gap: var(--space-4); flex-shrink: 0; }
 
 .nav-phone {
   display: inline-flex;
@@ -366,11 +379,17 @@ a.nav-phone-icon {
   font-weight: 600;
   color: var(--color-ink);
   text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .nav-phone svg { width: 18px; height: 18px; flex-shrink: 0; }
 
+.nav-actions .btn { flex-shrink: 0; white-space: nowrap; }
+
 .nav-toggle {
   display: none;
+  position: relative;
+  z-index: 1;
   background: none;
   border: 1px solid var(--color-paper-line);
   border-radius: var(--radius-sm);
@@ -385,7 +404,14 @@ a.nav-phone-icon {
 .nav-toggle[aria-expanded="true"] .icon-open { display: none; }
 .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
-@media (max-width: 880px) {
+/*
+ * 1140px (not the more typical ~900px tablet breakpoint) is intentional:
+ * five nav links plus the phone number and "Book an Appointment" button
+ * need roughly that much room to sit on one line without crowding or
+ * wrapping. Switching to the mobile menu earlier avoids a cramped
+ * mid-width zone where the row would otherwise overflow.
+ */
+@media (max-width: 1140px) {
   .nav-primary { position: static; }
   .nav-links {
     flex-direction: column;
@@ -411,7 +437,9 @@ a.nav-phone-icon {
     transition: transform var(--dur-slow) var(--ease);
     overflow-y: auto;
   }
-  .nav-menu.is-open { transform: translateX(0); }
+  .js-enabled .nav-menu { visibility: hidden; }
+  .js-enabled .nav-menu.is-open { transform: translateX(0); visibility: visible; }
+  html:not(.js-enabled) .nav-menu { position: static; transform: none; padding: var(--space-4); }
   .nav-actions { flex-direction: column; align-items: stretch; gap: var(--space-4); }
   .nav-actions .btn { width: 100%; justify-content: center; }
   .nav-toggle { display: inline-flex; }
@@ -749,11 +777,8 @@ a.nav-phone-icon {
 
 .faq-answer {
   display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows var(--dur-base) var(--ease);
 }
 .faq-answer > div { overflow: hidden; }
-.faq-item.is-open .faq-answer { grid-template-rows: 1fr; }
 .faq-answer p { padding-bottom: var(--space-5); color: var(--color-ink-soft); max-width: 60ch; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -811,7 +836,8 @@ a.nav-phone-icon {
   color: var(--color-ink-faint);
   padding-block: var(--space-4);
 }
-.breadcrumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2); padding: 0; margin: 0; }
+.breadcrumbs ol { list-style: none; display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-2); padding: 0; margin: 0; }
+.breadcrumbs li + li { margin-top: 0; }
 .breadcrumbs a { color: var(--color-ink-soft); }
 .breadcrumbs li:not(:last-child)::after { content: '/'; margin-left: var(--space-2); color: var(--color-paper-line); }
 
@@ -902,6 +928,7 @@ a.nav-phone-icon {
 .form-status.is-visible { display: block; }
 .form-status--success { background: var(--color-success-tint); color: var(--color-success); }
 .form-status--error { background: var(--color-error-tint); color: var(--color-error); }
+.form-status--info { background: var(--color-forest-tint); color: var(--color-forest-deep); }
 
 .form-success {
   display: none;
@@ -970,17 +997,17 @@ a.nav-phone-icon {
 /* --------------------------------------------------------------------------
    7. MOTION / A11Y
    -------------------------------------------------------------------------- */
-[data-reveal] {
+.js-enabled [data-reveal] {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
 }
-[data-reveal].is-visible {
+.js-enabled [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .js-enabled [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
 
 .tap-target {

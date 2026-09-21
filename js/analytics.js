@@ -1,9 +1,9 @@
 /**
  * Lightweight analytics abstraction.
  *
- * This does NOT load any third-party analytics script. It gives the rest of
- * the site a single `track(eventName, data)` function to call, and queues
- * events on `window.__mvAnalyticsQueue` until a real provider is wired up.
+ * This does NOT load any third-party analytics script. It sends events to
+ * the GA4 gtag function already loaded by each page and keeps a local queue
+ * for debugging if that function is unavailable.
  *
  * To connect GA4 (or any other tool) later:
  *   1. Load the provider's script (e.g. gtag.js) in the page <head>.
@@ -27,9 +27,8 @@
   window.__mvAnalyticsQueue = window.__mvAnalyticsQueue || [];
 
   function dispatch(name, data) {
-    // No analytics provider connected yet. Events are queued so nothing is
-    // lost once one is. Swap this for a real provider call when ready.
     window.__mvAnalyticsQueue.push({ name: name, data: data || {}, at: Date.now() });
+    if (typeof window.gtag === 'function') window.gtag('event', name, data || {});
 
     if (window.location.search.indexOf('debug_analytics') !== -1) {
       // eslint-disable-next-line no-console

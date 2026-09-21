@@ -5,8 +5,8 @@
  * SUBMISSION ADAPTER
  * -------------------
  * `submitMobileRequest(payload)` is the only function that talks to a
- * backend. Right now it does not send data anywhere — replace its body to
- * connect a real service. Two common options:
+ * backend. Set MOBILE_REQUEST_ENDPOINT to a real form or serverless URL
+ * before accepting online requests. Never report success without delivery.
  *
  *   Formspree:
  *     return fetch('https://formspree.io/f/YOUR_FORM_ID', {
@@ -47,12 +47,19 @@
 
   const FORM_ID = 'mobile-request-form';
   const MIN_SECONDS_BEFORE_SUBMIT = 3;
+  const MOBILE_REQUEST_ENDPOINT = ''; // TODO: Set to Mike's confirmed form endpoint.
 
   function submitMobileRequest(payload) {
-    // No backend connected yet. Simulate a network call so the UI can be
-    // fully exercised end-to-end. Replace with one of the adapters above.
-    return new Promise(function (resolve) {
-      window.setTimeout(function () { resolve({ ok: true }); }, 900);
+    if (!MOBILE_REQUEST_ENDPOINT) {
+      return Promise.reject(new Error('Mobile request endpoint is not configured'));
+    }
+    return fetch(MOBILE_REQUEST_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (response) {
+      if (!response.ok) throw new Error('Mobile request was not accepted');
+      return response;
     });
   }
 
@@ -67,6 +74,13 @@
     const submitBtn = form.querySelector('button[type="submit"]');
     const loadedAt = Date.now();
     let started = false;
+
+    if (!MOBILE_REQUEST_ENDPOINT) {
+      form.hidden = true;
+      showStatus('Online requests are being set up. Please call or text Mike at 519-859-1419 to ask about a mobile appointment.', 'info');
+      return;
+    }
+    form.hidden = false;
 
     const validators = {
       name: function (v) { return v.trim().length > 1 ? '' : 'Please enter your name.'; },
