@@ -18,7 +18,7 @@
  *   facility_cta_click
  *
  * Do not pass medical or otherwise sensitive personal information as event
- * data — location text, names, etc. from the mobile enquiry form are never
+ * data: location text, names, etc. from the mobile enquiry form are never
  * sent to analytics.
  */
 (function (window) {

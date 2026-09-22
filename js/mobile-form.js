@@ -39,7 +39,7 @@
  * - A minimum time-on-page check discards near-instant submissions, which
  *   are almost always automated.
  * - When a real backend is connected, pair this with a server-side check
- *   (and/or a provider's built-in spam filtering, e.g. Formspree's) —
+ *   (and/or a provider's built-in spam filtering, e.g. Formspree's) ;
  *   client-side checks alone are not sufficient.
  */
 (function () {
@@ -68,7 +68,7 @@
     if (!form) return;
 
     // The status banner is a sibling of the form in the markup (so it can
-    // sit above it visually), not a descendant — look it up from the page.
+    // sit above it visually), not a descendant: look it up from the page.
     const statusEl = document.querySelector('.form-status');
     const successEl = document.getElementById('mobile-form-success');
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -152,7 +152,7 @@
     form.addEventListener('submit', function (event) {
       event.preventDefault();
 
-      // Honeypot: if filled, pretend to succeed and stop — don't tip off bots.
+      // Honeypot: if filled, pretend to succeed and stop: don't tip off bots.
       const honeypot = form.elements.namedItem('website');
       if (honeypot && honeypot.value) {
         form.reset();

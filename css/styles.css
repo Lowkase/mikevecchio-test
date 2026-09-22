@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Mike Vecchio, RMT — Design System & Site Styles
+   Mike Vecchio, RMT: Design System & Site Styles
    Plain CSS. No build step. Organized as:
      1. Design tokens (custom properties)
      2. Reset / base elements
@@ -29,7 +29,7 @@
   --color-forest-deep: #2A3824;
   --color-forest-tint: #E4E9DA;
 
-  /* Color: clay (mobile RMT accent — distinguishes "Mike comes to you") */
+  /* Color: clay (mobile RMT accent: distinguishes "Mike comes to you") */
   --color-clay: #A15A34;
   --color-clay-deep: #7F4527;
   --color-clay-tint: #F1E1D2;
@@ -282,7 +282,7 @@ hr {
 /*
  * The translucent blur lives on a pseudo-element rather than directly on
  * .site-header. A `backdrop-filter` (or `filter`) on an element creates a
- * new containing block for its `position: fixed` descendants — which broke
+ * new containing block for its `position: fixed` descendants: which broke
  * the full-screen mobile nav overlay (a fixed-position child) by confining
  * it to the header's own small box. Isolating the filter to ::before avoids
  * that entirely.
@@ -583,6 +583,7 @@ a.nav-phone-icon {
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
+.two-ways--3 { grid-template-columns: repeat(3, 1fr); }
 .way {
   background: var(--color-paper);
   padding: var(--space-7);
@@ -591,6 +592,13 @@ a.nav-phone-icon {
 }
 .way--clay { background: var(--color-clay-tint); }
 .way--forest { background: var(--color-forest-tint); }
+.way--clay-deep { background: var(--color-clay); }
+.way--clay-deep .way__icon,
+.way--clay-deep h3,
+.way--clay-deep p { color: var(--color-paper); }
+.way--clay-deep .way__price small { color: rgba(248, 244, 236, 0.75); }
+.way--clay-deep .btn--outline { color: var(--color-paper); border-color: var(--color-paper); }
+.way--clay-deep .btn--outline:hover { background: var(--color-paper); border-color: var(--color-paper); color: var(--color-clay-deep); }
 .way__icon { width: 40px; height: 40px; margin-bottom: var(--space-4); color: var(--color-forest); }
 .way--clay .way__icon { color: var(--color-clay-deep); }
 .way h3 { margin-bottom: var(--space-3); }
@@ -599,6 +607,9 @@ a.nav-phone-icon {
 .way__price small { font-family: var(--font-body); font-size: var(--fs-body-sm); font-weight: 400; color: var(--color-ink-soft); display: block; margin-top: 2px; }
 .way__actions { margin-top: auto; }
 
+@media (max-width: 900px) {
+  .two-ways--3 { grid-template-columns: 1fr; }
+}
 @media (max-width: 760px) {
   .two-ways { grid-template-columns: 1fr; }
 }
@@ -652,29 +663,42 @@ a.nav-phone-icon {
 /* --- Pricing --------------------------------------------------------------- */
 .pricing-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-7);
+}
+.pricing-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pricing-section .pricing-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .pricing-card {
   background: var(--color-white);
   border: 1px solid var(--color-paper-line);
   border-radius: var(--radius-md);
   padding: var(--space-6);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
-.pricing-card__head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--space-5); gap: var(--space-3); }
+.pricing-card__head { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); margin-bottom: var(--space-5); }
+.pricing-card__head h3 { margin-bottom: 0; }
 .pricing-list { list-style: none; margin: 0 0 var(--space-5); padding: 0; }
 .pricing-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
   padding: var(--space-3) 0;
   border-bottom: 1px dashed var(--color-paper-line);
   gap: var(--space-4);
 }
 .pricing-row:last-child { border-bottom: none; }
-.pricing-row__label { color: var(--color-ink); }
+.pricing-row__label { color: var(--color-ink); min-width: 0; }
 .pricing-row__label small { display: block; color: var(--color-ink-faint); font-size: var(--fs-body-sm); }
 .pricing-row__price { font-family: var(--font-display); font-size: var(--fs-h3); white-space: nowrap; }
+.pricing-row__price small { font-family: var(--font-body); font-size: var(--fs-body-sm); font-weight: 400; color: var(--color-ink-faint); margin-left: 0.35em; }
 .pricing-note {
   font-size: var(--fs-body-sm);
   color: var(--color-ink-soft);
@@ -683,10 +707,24 @@ a.nav-phone-icon {
   padding: var(--space-4);
   margin-bottom: var(--space-5);
 }
-.pricing-card .btn { width: 100%; justify-content: center; }
+.pricing-card__notes { display: grid; gap: var(--space-3); }
+.pricing-card__notes .pricing-note { margin: 0; }
+.pricing-card .btn { width: 100%; justify-content: center; margin-top: auto; }
+.pricing-card .pricing-card__notes + .btn { margin-top: var(--space-5); }
+.pricing-section__groups { margin-top: var(--space-7); }
 
-@media (max-width: 760px) {
+@media (max-width: 1080px) {
+  .pricing-grid--3 { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 900px) {
   .pricing-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 420px) {
+  .pricing-card { padding: var(--space-5); }
+  .pricing-row { gap: var(--space-3); }
+  .pricing-row__price { font-size: 1.4rem; }
 }
 
 /* --- Audience strip ---------------------------------------------------------- */
@@ -847,6 +885,10 @@ a.nav-phone-icon {
 }
 .page-hero h1 { max-width: 22ch; }
 .page-hero .lede { margin-top: var(--space-4); }
+
+/* Anchor targets that CTAs jump to directly (e.g. /contact/#mobile-request):
+   offset past the sticky header so the section heading isn't hidden under it. */
+#practice, #mobile-request, #facility { scroll-margin-top: 100px; }
 
 /* --- Sticky mobile CTA bar ------------------------------------------------------------ */
 .sticky-cta {

@@ -3,5 +3,10 @@
 	"framework": null,
 	"buildCommand": "",
 	"installCommand": "",
-	"outputDirectory": "."
+	"outputDirectory": ".",
+	"redirects": [
+		{ "source": "/contact", "destination": "/booking/", "permanent": true },
+		{ "source": "/contact/", "destination": "/booking/", "permanent": true },
+		{ "source": "/contact/:path*", "destination": "/booking/", "permanent": true }
+	]
 }

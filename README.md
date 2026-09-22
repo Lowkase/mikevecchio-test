@@ -1,4 +1,4 @@
-# Mike Vecchio, RMT — Website
+# Mike Vecchio, RMT: Website
 
 A ground-up redesign of the Mike Vecchio RMT website: plain HTML5, modern CSS
 and vanilla JavaScript. No build step, no framework, no dependencies.
@@ -6,11 +6,13 @@ and vanilla JavaScript. No build step, no framework, no dependencies.
 ## Project structure
 
 ```
-index.html                 Homepage — works as a standalone conversion page
+index.html                 Homepage: works as a standalone conversion page
 massage-therapy/index.html Massage Therapy (St. Thomas practice) landing page
 mobile-rmt/index.html      Mobile RMT landing page (primary local-SEO page)
 about/index.html           About Mike
-contact/index.html         Contact + the Mobile RMT enquiry form + facility CTA
+booking/index.html         Booking hub: practice booking CTA + Mobile RMT enquiry form + facility CTA
+contact/index.html         Redirect stub only (old /contact/ URL -> /booking/); see vercel.json for the server-side 301
+faq/index.html             Frequently asked questions about practice and mobile appointments
 404.html                   Not-found page
 
 css/styles.css             The entire design system and site styles
@@ -26,9 +28,11 @@ vercel.json                Static-hosting config (framework: none)
 ```
 
 Every page repeats the same header/footer markup rather than pulling in a
-templating system — this is a static site with no build step, so each HTML
-file is self-contained. If you change the nav or footer, update it in all six
-HTML files (a simple `grep`/`sed` across the repo works fine for this scale).
+templating system: this is a static site with no build step, so each HTML
+file is self-contained. If you change the nav or footer, update it in all
+seven full-page HTML files (`contact/index.html` is just a redirect stub
+with no nav/footer, so it's excluded) — a simple `grep`/`sed` across the
+repo works fine for this scale.
 
 ## Running locally
 
@@ -43,53 +47,55 @@ Then visit http://localhost:8000.
 
 ## Where things are configured
 
-- **ClinicSense booking URL** — `https://mikevecchiormt.clinicsense.com/book`,
-  hard-coded on every "Book an Appointment" link and in the `ReserveAction`
-  JSON-LD on the homepage. It was verified live during this redesign
-  (resolves with a 301 → 200). To change it, search for
-  `mikevecchiormt.clinicsense.com` across the repo.
-- **Phone number** — `519-859-1419` / `tel:+15198591419`, used throughout
+- **ClinicSense booking URL**: `https://mikevecchiormt.clinicsense.com/book`.
+  Every "Book an Appointment" CTA site-wide now routes internally to
+  `/booking/#practice` first; the only place that links directly out to
+  ClinicSense is the "St. Thomas Practice" section's button on the Booking
+  page itself, plus the `ReserveAction` JSON-LD on the homepage. It was
+  verified live during this redesign (resolves with a 301 → 200). To change
+  it, search for `mikevecchiormt.clinicsense.com` across the repo.
+- **Phone number**: `519-859-1419` / `tel:+15198591419`, used throughout
   (nav, footer, hero, FAQ copy, JSON-LD `telephone`).
-- **Email** — `hello@mikevecchiormt.ca` is a **development placeholder only**. It is not linked on public pages. Add Mike's confirmed inbox to the Contact page and all footers when available.
-- **Pricing** — St. Thomas practice pricing ($70/$90/$110) and Mobile RMT
+- **Email**: `hello@mikevecchiormt.ca` is a **development placeholder only**. It is not linked on public pages. Add Mike's confirmed inbox to the Booking page and all footers when available.
+- **Pricing**: St. Thomas practice pricing ($70/$90/$110) and Mobile RMT
   pricing ($150 first treatment, $130 each additional back-to-back
   treatment, both including HST) appear in: the homepage pricing section,
   the "Two ways to see Mike" cards, the Mobile RMT feature section, the
   `/massage-therapy/` and `/mobile-rmt/` pricing sections, the FAQ answers,
   and the JSON-LD `Offer` entries on each page. Search for `$70`, `$110`,
   `$150`, `$130` to find every instance if prices change.
-- **Service area copy** — "St. Thomas, surrounding areas, and London"
+- **Service area copy**: "St. Thomas, surrounding areas, and London"
   (with White Oaks called out specifically) appears on the homepage, the
   Mobile RMT page's dedicated service-area section, and the FAQ. Travel fees
   depend on the address and are confirmed before booking. There is no
   per-city pricing table by design (see project brief: the mobile offering
   is intentionally simple while Mike gauges demand).
-- **Mobile form submission adapter** — see `js/mobile-form.js`. The
+- **Mobile form submission adapter**: see `js/mobile-form.js`. The
   `submitMobileRequest()` function is the single seam between the form UI
-  and a backend; it is disabled until `MOBILE_REQUEST_ENDPOINT` is set. The Contact page directs visitors to call or text in the meantime. A successful response from the configured endpoint is required before a success message appears.
+  and a backend; it is disabled until `MOBILE_REQUEST_ENDPOINT` is set. The Booking page directs visitors to call or text in the meantime. A successful response from the configured endpoint is required before a success message appears.
 
 ## Content verification (needs Mike's confirmation)
 
 The previous site and its structured data did not state whether the
 $70/$90/$110 St. Thomas practice prices include HST, so **this redesign does
-not claim either way** for those prices — they're shown as plain dollar
+not claim either way** for those prices: they're shown as plain dollar
 amounts. The Mobile RMT prices ($150 / $130) are stated as "including HST"
 per the project brief. Before launch, confirm:
 
-1. **HST treatment of the $70/$90/$110 practice prices** — update the
+1. **HST treatment of the $70/$90/$110 practice prices**: update the
    pricing sections/JSON-LD once confirmed (search for `30 minutes`, `45
    minutes`, `60 minutes` near "$70"/"$90"/"$110").
-2. **Email address** — `hello@mikevecchiormt.ca` is an internal placeholder, not a
+2. **Email address**: `hello@mikevecchiormt.ca` is an internal placeholder, not a
    verified inbox. Public email links are withheld until Mike provides his real address.
-3. **MYFM recognition** — the old site displayed a "myfm-spirit-award.png"
+3. **MYFM recognition**: the old site displayed a "myfm-spirit-award.png"
    graphic captioned "Voted best Massage Therapist." No award year,
    category, or official name could be confirmed from the source material,
    so the public recognition section is withheld until the specifics are confirmed.
-4. **St. Thomas practice street address** — not published on the previous
+4. **St. Thomas practice street address**: not published on the previous
    site or anywhere in this redesign (by design, pending Mike's
    preference); FAQ states it's "shared when you book." Add it explicitly
    if Mike wants the address public.
-5. **Google Analytics property** — `G-G4RWERL1EK` was carried over from the
+5. **Google Analytics property**: `G-G4RWERL1EK` was carried over from the
    previous site's `gtag.js` snippet. Confirm this is still Mike's active
    GA4 property (or replace it) before relying on it for traffic data.
 
@@ -97,7 +103,7 @@ per the project brief. Before launch, confirm:
 
 Most imagery is placeholder. Mike's portrait was carried over from the previous site; everything else is an illustrated SVG
 placeholder so the layout can be exercised without needing real photos yet.
-Note: the previous site's hero/treatment-room JPEG was **not** reused here —
+Note: the previous site's hero/treatment-room JPEG was **not** reused here ;
 it framed a client mid-treatment, which isn't appropriate to feature
 prominently in a redesign, so it was replaced with an illustrated stand-in.
 
@@ -105,7 +111,7 @@ prominently in a redesign, so it was replaced with an illustrated stand-in.
 | --- | --- | --- |
 | `images/mike-hero-placeholder.svg` | Homepage hero | Horizontal environmental photo of Mike in his treatment space. Natural expression, leave negative space on one side for the headline. Recommended ~1600×1200 or wider, will be cropped to 4:5 on desktop / ~16:10 on mobile. |
 | `images/mike-treatment-room-placeholder.svg` | `/massage-therapy/` | Photo of Mike's actual St. Thomas treatment room (empty of clients). ~1280×960 (4:3). |
-| `images/mike-portrait-placeholder.jpg` (real, reused) | Homepage "Meet Mike", `/about/`, social sharing | A warm, straightforward portrait. Current file is 474×600 (3:4) — keep that ratio or update the CSS `aspect-ratio` if it changes. |
+| `images/mike-portrait-placeholder.jpg` (real, reused) | Homepage "Meet Mike", `/about/`, social sharing | A warm, straightforward portrait. Current file is 474×600 (3:4): keep that ratio or update the CSS `aspect-ratio` if it changes. |
 | `images/mobile-setup-placeholder.svg` | Homepage Mobile RMT feature, `/mobile-rmt/` | Photo of Mike carrying/setting up his portable table. ~4:3. |
 | `images/mobile-environment-placeholder.svg` | `/mobile-rmt/` "What is Mobile RMT?" | Table set up in a bright, realistic residential room. ~4:3. |
 | `images/myfm-spirit-award.png` (real, unused) | Not currently shown | Use only after confirming the exact recognition details. |
@@ -118,7 +124,7 @@ nobody mistakes them for final photography.
 
 ## Mobile enquiry form
 
-`/contact/#mobile-request` — form is hidden until a real endpoint is configured. Once enabled it collects name, email, phone, general
+`/booking/#mobile-request`: form is hidden until a real endpoint is configured. Once enabled it collects name, email, phone, general
 location/postal code, number of people, preferred day/time, and an optional
 message. Deliberately does **not** ask for medical history.
 
@@ -130,7 +136,7 @@ message. Deliberately does **not** ask for medical history.
   confirmation message.
 - Spam prevention: a hidden honeypot field (`website`) and a minimum
   time-on-page check before the form will submit. Neither replaces
-  server-side/provider spam filtering — see the adapter notes in
+  server-side/provider spam filtering: see the adapter notes in
   `js/mobile-form.js` once a real backend is connected.
 - The submission adapter (`submitMobileRequest()`) is intentionally the only
   function that would talk to a network endpoint, so swapping in Formspree,
@@ -167,22 +173,17 @@ form content is ever included in an analytics event.
 - Unique `<title>`, meta description, and canonical URL per page.
 - Open Graph + Twitter Card metadata per page.
 - JSON-LD: `HealthAndBeautyBusiness` + `Person` + `WebSite` on the homepage;
-  `Service` + `BreadcrumbList` on each service/secondary page;
-  `FAQPage` on the homepage (full FAQ) and `/mobile-rmt/` (mobile-specific
-  subset) — both mirror FAQ content that's actually visible on the page.
+  `Service` + `BreadcrumbList` on each service/secondary page; and
+  `FAQPage` on `/faq/`, matching the visible questions on that page.
 - No invented ratings, reviews, opening hours, coordinates, or unverifiable
   claims anywhere in the structured data.
 - `robots.txt` and `sitemap.xml` at the repo root.
-- FAQ lives primarily on the homepage (so the homepage stands alone as a
-  full conversion page per the project brief), with a shorter, page-specific
-  FAQ also on `/massage-therapy/` and `/mobile-rmt/` for long-tail search
-  intent. There is no separate `/faq/` page — the nav's "FAQ" link points to
-  `/#faq`.
+- The complete FAQ lives at `/faq/` and is linked from the primary navigation.
 
 ## Accessibility
 
 Skip-to-content link, semantic landmarks, logical heading order (verified
-with Lighthouse — see below), visible focus states, accessible
+with Lighthouse: see below), visible focus states, accessible
 nav/FAQ/form patterns, `prefers-reduced-motion` support (scroll-reveal and
 transitions are disabled/instant for users who request it), and minimum
 44px tap targets on icon-only controls. Color tokens in `css/styles.css`
@@ -196,7 +197,7 @@ No JS framework, no icon font, minimal JS (a few small, focused files),
 below-the-fold images, explicit width/height (or `aspect-ratio`) on every
 image to avoid layout shift, and a single web font family (Fraunces,
 headings only) loaded with `font-display: swap` and a solid serif fallback
-stack — body text uses the system font stack, so no body-text web font is
+stack: body text uses the system font stack, so no body-text web font is
 fetched at all.
 
 Lighthouse (desktop, this build): 100 Accessibility / 100 Best Practices /
@@ -208,4 +209,11 @@ Configured the same way as the previous site: `vercel.json` sets the
 framework preset to "Other" with empty install/build commands and
 `outputDirectory: "."`, so the repository root is served as-is. This will
 work unmodified on any static host (Netlify, GitHub Pages, S3 + CloudFront,
-etc.) — there's nothing Vercel-specific about the actual site.
+etc.): there's nothing Vercel-specific about the actual site.
+
+`vercel.json` also declares a 301 redirect from `/contact/` (the old page
+URL) to `/booking/`. That redirect entry is Vercel-specific syntax; if this
+ever moves to a different static host, port the same `/contact/` → `/booking/`
+rule to that host's redirect config. `contact/index.html` is kept as a
+plain HTML fallback (meta-refresh + canonical + a manual link) so the old
+URL still resolves correctly even without host-level redirect support.

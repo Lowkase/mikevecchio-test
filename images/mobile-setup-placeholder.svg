@@ -24,5 +24,5 @@
     <path d="M320 225 L295 300"/>
     <path d="M320 225 L345 300"/>
   </g>
-  <text x="320" y="400" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#6B6355">Photo coming soon — Mike with his mobile setup</text>
+  <text x="320" y="400" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#6B6355">Photo coming soon: Mike with his mobile setup</text>
 </svg>

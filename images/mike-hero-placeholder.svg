@@ -32,5 +32,5 @@
     <rect x="440" y="220" width="70" height="90" rx="3"/>
     <rect x="360" y="240" width="55" height="70" rx="3"/>
   </g>
-  <text x="600" y="800" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#6B6355">Photo coming soon — Mike's St. Thomas treatment room</text>
+  <text x="600" y="800" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#6B6355">Photo coming soon: Mike's St. Thomas treatment room</text>
 </svg>

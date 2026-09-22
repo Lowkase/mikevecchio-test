@@ -2,7 +2,7 @@
  * Site-wide progressive enhancement: mobile navigation, FAQ accordion,
  * scroll reveal, sticky mobile CTA visibility, and footer year.
  *
- * Everything here is small and self-contained on purpose — the site works
+ * Everything here is small and self-contained on purpose: the site works
  * (links, forms, content) without any of it running.
  */
 (function () {
@@ -102,7 +102,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     Sticky mobile "Book" CTA — appears once the hero has been scrolled
+     Sticky mobile "Book" CTA: appears once the hero has been scrolled
      past, so it never competes with the primary hero CTAs.
      ------------------------------------------------------------------- */
   function initStickyCta() {
