@@ -77,7 +77,6 @@
 
     if (!MOBILE_REQUEST_ENDPOINT) {
       form.hidden = true;
-      showStatus('Online requests are being set up. Please call or text Mike at 519-859-1419 to ask about a mobile appointment.', 'info');
       return;
     }
     form.hidden = false;

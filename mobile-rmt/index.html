@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&display=swap" />
-<link rel="stylesheet" href="/css/styles.css?v=20260922-3" />
+<link rel="stylesheet" href="/css/styles.css?v=20260924-11" />
 
 <script type="application/ld+json">
 {
@@ -108,7 +108,7 @@
     <nav class="nav-primary" aria-label="Primary">
       <div class="nav-menu" id="nav-menu">
         <ul class="nav-links">
-          <li><a href="/massage-therapy/">Massage Therapy</a></li>
+          <li><a href="/massage-therapy/">In Clinic</a></li>
           <li><a href="/mobile-rmt/" aria-current="page">Mobile RMT</a></li>
           <li><a href="/groups-facilities/">Groups &amp; Facilities</a></li>
           <li><a href="/about/">About</a></li>
@@ -116,7 +116,7 @@
           <li><a href="/booking/">Booking</a></li>
         </ul>
         <div class="nav-actions">
-          <a class="btn btn--primary" href="/booking/#practice" data-analytics-event="booking_click" data-analytics-location="nav">Book an Appointment</a>
+          <a class="btn btn--primary" href="/booking/" data-analytics-event="booking_click" data-analytics-location="nav">Book an Appointment</a>
         </div>
       </div>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
@@ -142,63 +142,73 @@
     </div>
   </section>
 
-  <!-- MOBILE RMT FEATURE -->
-  <section class="section container" id="mobile-rmt-feature" data-reveal>
-    <div class="feature">
-      <div>
-        <p class="eyebrow eyebrow--clay">Mobile RMT</p>
-        <h2>Registered Massage Therapy at Your Location</h2>
-        <p>Mike brings Registered Massage Therapy to your home, including a portable treatment table and the supplies needed for your appointment.</p>
-        <ul class="feature__list">
-          <li>Available in St. Thomas, surrounding areas, and London, subject to travel time</li>
-          <li>Mike brings a professional portable table and the supplies your treatment needs</li>
-          <li>You provide a suitable area with enough clear floor space for the treatment table</li>
-        </ul>
-        <div class="pricing-note">
-          <strong>Booking for two or more?</strong> Mike can treat up to four people back-to-back at the same location. The first 60-minute treatment is $150 and each additional 60-minute treatment is $130, plus HST. Five or more? See Groups &amp; Facilities below.
+  <!-- MOBILE RMT OVERVIEW -->
+  <section class="section section--alt" id="mobile-rmt-feature" data-reveal>
+    <div class="container">
+      <div class="feature">
+        <div>
+          <p class="eyebrow eyebrow--clay">Mobile RMT</p>
+          <h2>Registered Massage Therapy at Your Location</h2>
+          <p>Mike brings a professional portable treatment table, linens, and everything your session needs. You just need a bit of clear floor space. A living room or bedroom both work well.</p>
+          <h3 class="feature__subhead">Why clients choose mobile</h3>
+          <ul class="feature__list">
+            <li>No drive and no waiting room, before or after your appointment</li>
+            <li>Couples and families can book up to four treatments back-to-back</li>
+            <li>A practical option when getting to an appointment is difficult</li>
+          </ul>
+          <h3 class="feature__subhead">How it works</h3>
+          <ul class="feature__list">
+            <li>Call or text Mike with your location, preferred time, and number of people</li>
+            <li>Mike confirms the details, including the total cost and any travel fee</li>
+            <li>Mike sets up, provides your treatment, and packs up when you're done</li>
+          </ul>
+          <div class="hero__actions">
+            <a class="btn btn--clay btn--lg" href="/booking/#mobile-request" data-analytics-event="mobile_cta_click" data-analytics-location="mobile_page_feature">Request a Mobile Appointment</a>
+          </div>
         </div>
-        <p class="pricing-note">Availability and any additional travel fee depend on the address and are confirmed before booking.</p>
-        <div class="hero__actions">
-          <a class="btn btn--clay btn--lg" href="/booking/#mobile-request" data-analytics-event="mobile_cta_click" data-analytics-location="mobile_page_feature">Request a Mobile Appointment</a>
+        <div class="feature__media">
+          <img src="/images/mobile-setup-placeholder.svg" width="640" height="480" alt="Illustrative placeholder for a photo of Mike's mobile treatment setup" loading="lazy" decoding="async" />
         </div>
-      </div>
-      <div class="feature__media">
-        <img src="/images/mobile-setup-placeholder.svg" width="640" height="480" alt="Illustrative placeholder for a photo of Mike's mobile treatment setup" loading="lazy" decoding="async" />
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--alt container" data-reveal>
-    <div class="feature">
-      <div>
-        <h2>What is Mobile RMT?</h2>
-        <p>Mobile RMT is Registered Massage Therapy provided in your home. Mike sets up a professional portable treatment table, provides the scheduled treatment, and packs up the equipment when the appointment is complete.</p>
-        <p>Mobile RMT may suit busy households, people who find travel difficult, and those who prefer receiving treatment in their own home.</p>
-      </div>
-      <div class="feature__media">
-        <img src="/images/mobile-environment-placeholder.svg" width="640" height="480" alt="Illustrative placeholder for a photo of a treatment table set up in a client's home" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
 
   <section class="section" data-reveal>
     <div class="container">
-      <div class="section-head">
+      <div class="section-head section-head--wide">
         <p class="eyebrow eyebrow--clay">Service area</p>
         <h2>Where Mike travels for Mobile RMT</h2>
         <p class="lede">Mobile appointments are available in St. Thomas, surrounding areas, and London.</p>
       </div>
       <div class="feature feature--reverse">
-        <div class="service-area-map" aria-hidden="true">
-          <svg viewBox="0 0 200 160" width="180" fill="none" stroke="#3C4E33" stroke-width="1.6"><circle cx="70" cy="80" r="6" fill="#3C4E33" stroke="none"/><circle cx="130" cy="70" r="6" fill="#A15A34" stroke="none"/><circle cx="145" cy="95" r="5" fill="#A15A34" stroke="none"/><path d="M70 80c20 -30 60 -30 80 -10" stroke-dasharray="4 4"/><path d="M130 70c8 8 12 16 15 25" stroke-dasharray="4 4"/></svg>
+        <div class="feature__media">
+          <img src="/images/service-area-map.svg" width="1200" height="900" alt="Map of Mike's mobile service area: about 33 km around St. Thomas, including all of London, Port Stanley, Aylmer, and Belmont" loading="lazy" decoding="async" />
         </div>
         <div>
-          <ul class="feature__list">
-            <li><strong>St. Thomas</strong>: Mike's home base and primary mobile service area.</li>
-            <li><strong>London</strong>, including <strong>White Oaks</strong> and other neighbourhoods; travel details depend on the address.</li>
-            <li><strong>Surrounding areas</strong> may be available depending on travel distance. Contact Mike to confirm availability.</li>
+          <ul class="area-list">
+            <li class="area-list__item">
+              <span class="area-list__icon area-list__icon--home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-6 8 6"/><path d="M6 9.5V19h12V9.5"/><path d="M10 19v-5h4v5"/></svg></span>
+              <div>
+                <h3 class="area-list__name">St. Thomas</h3>
+                <p class="area-list__desc">Mike's home base and primary mobile service area.</p>
+              </div>
+            </li>
+            <li class="area-list__item">
+              <span class="area-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.6-6-10a6 6 0 0 1 12 0c0 4.4-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span>
+              <div>
+                <h3 class="area-list__name">London</h3>
+                <p class="area-list__desc">Travel details depend on the address.</p>
+              </div>
+            </li>
+            <li class="area-list__item">
+              <span class="area-list__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke-dasharray="2.5 3"/><circle cx="12" cy="12" r="2.5"/></svg></span>
+              <div>
+                <h3 class="area-list__name">Surrounding areas</h3>
+                <p class="area-list__desc">May be available depending on travel distance. Contact Mike to confirm availability.</p>
+              </div>
+            </li>
           </ul>
-          <p class="text-soft">Availability and any additional travel fee depend on the address and are confirmed before booking.</p>
+          <p class="area-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.8" r="0.6" fill="currentColor"/></svg><span>Availability and any additional travel fee depend on the address and are confirmed before booking.</span></p>
         </div>
       </div>
     </div>
@@ -222,79 +232,10 @@
         </ul>
         <div class="pricing-card__notes">
           <p class="pricing-note">Availability and any additional travel fee depend on the address and are confirmed before booking.</p>
-          <p class="pricing-note">Treating 5 or more people at one location? See <a href="/groups-facilities/">Groups &amp; Facilities</a> below.</p>
         </div>
         <a class="btn btn--clay" href="/booking/#mobile-request" data-analytics-event="mobile_cta_click" data-analytics-location="mobile_page_pricing">Book an Appointment</a>
         </div>
       </div>
-      <p class="text-soft" style="text-align:center; margin: var(--space-5) auto 0;">Mike is currently offering 60-minute mobile appointments. If you have a specific need, <a href="/booking/">contact Mike</a> to discuss it.</p>
-    </div>
-  </section>
-
-  <section class="section" data-reveal>
-    <div class="container">
-      <div class="section-head">
-        <p class="eyebrow eyebrow--clay">What Mike brings</p>
-        <h2>What Mike Brings</h2>
-        <p class="lede">Mike brings a professional portable treatment table, linens and the supplies your session needs. You just need a bit of clear floor space. A living room or bedroom both work well.</p>
-      </div>
-      <div class="feature">
-        <div class="feature__media">
-          <img src="/images/mobile-setup-placeholder.svg" width="640" height="480" alt="Illustrative placeholder for a photo of Mike carrying his mobile treatment table" loading="lazy" decoding="async" />
-        </div>
-        <div>
-          <h3>How an appointment works</h3>
-          <ul class="feature__list">
-            <li>Call or text Mike with your general location, preferred time, and number of people</li>
-            <li>Mike confirms your appointment, including the total cost and any travel fee</li>
-            <li>Mike arrives, sets up the treatment table, and provides the scheduled treatment</li>
-            <li>Mike packs up the table and supplies when the appointment is complete</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section container" data-reveal>
-    <div class="section-head section-head--center">
-      <p class="eyebrow eyebrow--clay">Why mobile costs a bit more</p>
-      <h2>The Convenience of Mobile RMT</h2>
-    </div>
-    <div class="grid grid--3">
-      <div class="help-item" style="border-top:none;">
-        <h3>No drive, no waiting room</h3>
-        <p>There is no need to travel before or after the appointment.</p>
-      </div>
-      <div class="help-item" style="border-top:none;">
-        <h3>Convenient for Households</h3>
-        <p>Couples and families can book back-to-back treatments without leaving the house.</p>
-      </div>
-      <div class="help-item" style="border-top:none;">
-        <h3>An Option When Travel Is Difficult</h3>
-        <p>A practical option if getting to an appointment is difficult for you or someone you care for.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--alt" id="groups" data-reveal>
-    <div class="container">
-      <div class="callout" style="background: var(--color-clay); grid-template-columns: 1fr;">
-        <div>
-          <p class="eyebrow" style="color: var(--color-paper);">Groups &amp; facilities</p>
-          <h2>Massage therapy for your residents, team or group.</h2>
-          <p>Booking Mobile RMT for five or more people at one location? Retirement residences, senior communities, workplaces and families can arrange multiple treatments in one visit. Mike travels once and treats everyone back-to-back.</p>
-          <a class="btn btn--outline btn--lg" href="/groups-facilities/" data-analytics-event="facility_cta_click" data-analytics-location="mobile_page_groups">Learn About Groups &amp; Facilities</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section final-cta container" data-reveal>
-    <h2>Ready to book with Mike?</h2>
-    <div class="final-cta__actions">
-      <a class="btn btn--primary btn--lg" href="/booking/#practice" data-analytics-event="booking_click" data-analytics-location="mobile_page_final_cta">Book an Appointment</a>
-      <a class="btn btn--clay btn--lg" href="/booking/#mobile-request" data-analytics-event="mobile_cta_click" data-analytics-location="mobile_page_final_cta">Request a Mobile Appointment</a>
     </div>
   </section>
 </main>
@@ -321,7 +262,7 @@
       <div>
         <h3>Explore</h3>
         <ul class="footer-links">
-          <li><a href="/massage-therapy/">Massage Therapy</a></li>
+          <li><a href="/massage-therapy/">In Clinic</a></li>
           <li><a href="/mobile-rmt/">Mobile RMT</a></li>
           <li><a href="/groups-facilities/">Groups &amp; Facilities</a></li>
           <li><a href="/about/">About Mike</a></li>

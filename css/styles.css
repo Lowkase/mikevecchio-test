@@ -208,6 +208,9 @@ hr {
   margin-bottom: var(--space-7);
 }
 .section-head--center { margin-inline: auto; text-align: center; }
+.section-head--wide { max-width: none; }
+.section-head--tight { margin-bottom: var(--space-5); }
+.section-head--wide .lede { max-width: none; }
 
 .eyebrow {
   display: inline-flex;
@@ -484,6 +487,13 @@ a.nav-phone-icon {
 }
 .btn--clay:hover { background: var(--color-clay-deep); border-color: var(--color-clay-deep); color: var(--color-white); }
 
+.btn--clay-deep {
+  background: var(--color-clay-deep);
+  border-color: var(--color-clay-deep);
+  color: var(--color-white);
+}
+.btn--clay-deep:hover { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-white); }
+
 .btn--outline {
   background: transparent;
   border-color: currentColor;
@@ -599,13 +609,31 @@ a.nav-phone-icon {
 .way--clay-deep .way__price small { color: rgba(248, 244, 236, 0.75); }
 .way--clay-deep .btn--outline { color: var(--color-paper); border-color: var(--color-paper); }
 .way--clay-deep .btn--outline:hover { background: var(--color-paper); border-color: var(--color-paper); color: var(--color-clay-deep); }
-.way__icon { width: 40px; height: 40px; margin-bottom: var(--space-4); color: var(--color-forest); }
+.way__icon { width: 64px; height: 64px; margin-bottom: var(--space-4); color: var(--color-forest); }
 .way--clay .way__icon { color: var(--color-clay-deep); }
 .way h3 { margin-bottom: var(--space-3); }
 .way p { margin-bottom: var(--space-5); }
 .way__price { font-family: var(--font-display); font-size: var(--fs-h3); margin-bottom: var(--space-5); }
 .way__price small { font-family: var(--font-body); font-size: var(--fs-body-sm); font-weight: 400; color: var(--color-ink-soft); display: block; margin-top: 2px; }
 .way__actions { margin-top: auto; }
+.way__prices { list-style: none; padding: 0; margin: 0 0 var(--space-5); }
+.way__prices li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-3) 0;
+  border-bottom: 1px dashed rgba(36, 34, 29, 0.18);
+}
+.way__prices li:last-child { border-bottom: none; }
+.way__prices li > span:first-child small { display: block; font-size: var(--fs-body-sm); color: var(--color-ink-soft); }
+.way__prices-amount { font-family: var(--font-display); font-size: 1.375rem; white-space: nowrap; }
+.way__prices-amount small { font-family: var(--font-body); font-size: var(--fs-body-sm); color: var(--color-ink-soft); margin-left: 0.3em; }
+.way--clay-deep .way__prices { color: var(--color-paper); }
+.way--clay-deep .way__prices li { border-bottom-color: rgba(248, 244, 236, 0.3); }
+.way--clay-deep .way__prices li > span:first-child small,
+.way--clay-deep .way__prices-amount small { color: rgba(248, 244, 236, 0.8); }
 
 @media (max-width: 900px) {
   .two-ways--3 { grid-template-columns: 1fr; }
@@ -640,20 +668,60 @@ a.nav-phone-icon {
 .feature__media img { width: 100%; height: 100%; object-fit: cover; }
 .feature__list { list-style: none; padding: 0; margin: var(--space-5) 0; }
 .feature__list li {
-  display: flex;
-  gap: var(--space-3);
-  padding: var(--space-2) 0;
+  position: relative;
+  padding: var(--space-2) 0 var(--space-2) calc(8px + var(--space-3));
   color: var(--color-ink-soft);
 }
 .feature__list li::before {
   content: '';
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: calc(var(--space-2) + 0.55em);
   width: 8px; height: 8px;
-  margin-top: 0.55em;
   border-radius: 50%;
   background: var(--color-clay);
 }
 .feature__list--forest li::before { background: var(--color-forest); }
+.feature__subhead { font-size: var(--fs-body-lg); margin: var(--space-6) 0 0; }
+.feature__subhead + .feature__list { margin-top: var(--space-2); }
+.feature__subhead:first-child { margin-top: 0; }
+
+/* --- Service area list (Mobile RMT) ---------------------------------------- */
+.area-list { list-style: none; padding: 0; margin: 0 0 var(--space-5); }
+.area-list__item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--space-4);
+  align-items: start;
+  margin: 0;
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-paper-line);
+}
+.area-list__item:first-child { padding-top: 0; }
+.area-list__icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--color-clay-tint);
+  color: var(--color-clay-deep);
+}
+.area-list__icon--home { background: var(--color-forest-tint); color: var(--color-forest); }
+.area-list__icon svg { width: 22px; height: 22px; }
+.area-list__name { font-size: var(--fs-body-lg); margin: 0 0 var(--space-1); }
+.area-list__desc { margin: 0; color: var(--color-ink-soft); }
+.area-note {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  margin: 0;
+  padding: var(--space-4);
+  font-size: var(--fs-body-sm);
+  color: var(--color-ink-soft);
+  background: var(--color-paper-deep);
+  border-radius: var(--radius-sm);
+}
+.area-note svg { flex-shrink: 0; width: 18px; height: 18px; margin-top: 0.15em; color: var(--color-clay-deep); }
 
 @media (max-width: 860px) {
   .feature, .feature--reverse { grid-template-columns: 1fr; }
@@ -666,7 +734,6 @@ a.nav-phone-icon {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-7);
 }
-.pricing-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .pricing-section .pricing-grid--single {
   grid-template-columns: minmax(0, 1fr);
   width: 100%;
@@ -712,10 +779,6 @@ a.nav-phone-icon {
 .pricing-card .btn { width: 100%; justify-content: center; margin-top: auto; }
 .pricing-card .pricing-card__notes + .btn { margin-top: var(--space-5); }
 .pricing-section__groups { margin-top: var(--space-7); }
-
-@media (max-width: 1080px) {
-  .pricing-grid--3 { grid-template-columns: 1fr 1fr; }
-}
 
 @media (max-width: 900px) {
   .pricing-grid { grid-template-columns: 1fr; }
@@ -1016,17 +1079,6 @@ a.nav-phone-icon {
   aspect-ratio: 3 / 4;
 }
 .about-portrait img { width: 100%; height: 100%; object-fit: cover; }
-
-.service-area-map {
-  border-radius: var(--radius-lg);
-  background: var(--color-forest-tint);
-  border: 1px dashed var(--color-forest);
-  padding: var(--space-6);
-  aspect-ratio: 4 / 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .error-page {
   min-height: 60vh;

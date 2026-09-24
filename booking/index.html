@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&display=swap" />
-<link rel="stylesheet" href="/css/styles.css?v=20260922-3" />
+<link rel="stylesheet" href="/css/styles.css?v=20260924-11" />
 
 <script type="application/ld+json">
 {
@@ -60,7 +60,7 @@
     <nav class="nav-primary" aria-label="Primary">
       <div class="nav-menu" id="nav-menu">
         <ul class="nav-links">
-          <li><a href="/massage-therapy/">Massage Therapy</a></li>
+          <li><a href="/massage-therapy/">In Clinic</a></li>
           <li><a href="/mobile-rmt/">Mobile RMT</a></li>
           <li><a href="/groups-facilities/">Groups &amp; Facilities</a></li>
           <li><a href="/about/">About</a></li>
@@ -68,7 +68,7 @@
           <li><a href="/booking/" aria-current="page">Booking</a></li>
         </ul>
         <div class="nav-actions">
-          <a class="btn btn--primary" href="#practice" data-analytics-event="booking_click" data-analytics-location="nav">Book an Appointment</a>
+          <a class="btn btn--primary" href="/booking/" data-analytics-event="booking_click" data-analytics-location="nav">Book an Appointment</a>
         </div>
       </div>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
@@ -87,33 +87,49 @@
   <section class="page-hero container">
     <p class="eyebrow">Booking</p>
     <h1>Book an Appointment</h1>
-    <p class="lede">Book a practice appointment, request a Mobile RMT visit, or ask about group and facility bookings below.</p>
+    <p class="lede">Choose how you'd like to see Mike: in clinic at his St. Thomas practice, mobile at your home, or a group visit at your facility.</p>
+    <div class="hero__actions" style="margin-top: var(--space-6);">
+      <a class="btn btn--outline" href="#practice">In Clinic</a>
+      <a class="btn btn--outline" href="#mobile-request">Mobile RMT</a>
+      <a class="btn btn--outline" href="#facility">Groups &amp; Facilities</a>
+    </div>
   </section>
 
-  <!-- ST. THOMAS PRACTICE -->
-  <section class="section" id="practice" data-reveal>
+  <!-- IN CLINIC -->
+  <section class="section section--alt" id="practice" data-reveal>
     <div class="container container--narrow">
-      <div class="section-head">
-        <p class="eyebrow">Book an Appointment</p>
-        <h2>St. Thomas Practice</h2>
-        <p class="lede">Book online through Mike's scheduling system, or call or text Mike at <a href="tel:+15198591419">519-859-1419</a> if you'd like to ask a question first.</p>
+      <div class="section-head section-head--tight">
+        <p class="eyebrow">In Clinic</p>
+        <h2>At Mike's St. Thomas Practice</h2>
+        <p class="lede">Registered Massage Therapy in a relaxed, private treatment room. Book online through Mike's scheduling system, or call or text <a href="tel:+15198591419">519-859-1419</a> if you have a question first.</p>
       </div>
+      <ul class="pricing-list">
+        <li class="pricing-row"><span class="pricing-row__label">30 minutes</span><span class="pricing-row__price">$70<small>+ HST</small></span></li>
+        <li class="pricing-row"><span class="pricing-row__label">45 minutes</span><span class="pricing-row__price">$90<small>+ HST</small></span></li>
+        <li class="pricing-row"><span class="pricing-row__label">60 minutes</span><span class="pricing-row__price">$110<small>+ HST</small></span></li>
+      </ul>
       <div class="hero__actions">
         <a class="btn btn--primary btn--lg" href="https://mikevecchiormt.clinicsense.com/book" target="_blank" rel="noopener" data-analytics-event="booking_click" data-analytics-location="booking_practice">Book an Appointment</a>
+        <a class="btn btn--ghost" href="/massage-therapy/">More about In Clinic →</a>
       </div>
     </div>
   </section>
 
-  <!-- MOBILE REQUEST FORM -->
-  <section class="section section--alt" id="mobile-request" data-reveal>
+  <!-- MOBILE RMT -->
+  <section class="section" id="mobile-request" data-reveal>
     <div class="container container--narrow">
-      <div class="section-head">
+      <div class="section-head section-head--tight">
         <p class="eyebrow eyebrow--clay">Mobile RMT</p>
-        <h2>Mobile RMT Appointments</h2>
-        <p class="lede">Call or text Mike at <a href="tel:+15198591419">519-859-1419</a> to arrange a Mobile RMT visit. Include your general location, preferred day or time, and the number of people interested in treatment.</p>
+        <h2>At Your Home</h2>
+        <p class="lede">Mike brings a portable treatment table to your home in St. Thomas, surrounding areas, or London, for one person or up to four back-to-back. Call or text <a href="tel:+15198591419">519-859-1419</a> with your location, preferred day or time, and number of people. Any travel fee is confirmed before booking.</p>
       </div>
+      <ul class="pricing-list">
+        <li class="pricing-row"><span class="pricing-row__label">First 60 minutes</span><span class="pricing-row__price">$150<small>+ HST</small></span></li>
+        <li class="pricing-row"><span class="pricing-row__label">Each additional back-to-back treatment<small>Up to 4 treatments total</small></span><span class="pricing-row__price">$130<small>+ HST</small></span></li>
+      </ul>
       <div class="hero__actions">
         <a class="btn btn--clay btn--lg" href="tel:+15198591419" data-analytics-event="mobile_cta_click" data-analytics-location="booking_mobile">Call or Text About Mobile RMT</a>
+        <a class="btn btn--ghost" href="/mobile-rmt/">More about Mobile RMT →</a>
       </div>
 
       <div class="form-status" role="status" aria-live="polite"></div>
@@ -184,16 +200,20 @@
     </div>
   </section>
 
-  <!-- FACILITY / GROUP -->
-  <section class="section container" id="facility" data-reveal>
-    <div class="callout">
-      <div>
-        <p class="eyebrow" style="color:var(--color-paper);">Groups &amp; facilities</p>
-        <h2>Massage therapy for your residents, team or group.</h2>
-        <p>Need Mobile RMT for five or more people at one location, such as a retirement residence, workplace, or family gathering? Mike offers group and facility visits in St. Thomas, surrounding areas, and London. See <a href="/groups-facilities/" style="color:inherit;">pricing and details</a>.</p>
+  <!-- GROUPS & FACILITIES -->
+  <section class="section section--alt" id="facility" data-reveal>
+    <div class="container container--narrow">
+      <div class="section-head section-head--tight">
+        <p class="eyebrow eyebrow--clay">Groups &amp; Facilities</p>
+        <h2>For Your Group or Facility</h2>
+        <p class="lede">For retirement residences, workplaces, and families booking five or more people at one location. Mike divides his time on site between clients. Call or text <a href="tel:+15198591419">519-859-1419</a> to plan scheduling, headcount, and any travel fee.</p>
       </div>
-      <div class="callout__actions">
-        <a class="btn btn--outline btn--lg" href="tel:+15198591419" data-analytics-event="facility_cta_click" data-analytics-location="booking_page">Contact Mike</a>
+      <ul class="pricing-list">
+        <li class="pricing-row"><span class="pricing-row__label">Per hour, on site<small>Mike divides the time between clients</small></span><span class="pricing-row__price">$130<small>+ HST</small></span></li>
+      </ul>
+      <div class="hero__actions">
+        <a class="btn btn--clay btn--lg" href="tel:+15198591419" data-analytics-event="facility_cta_click" data-analytics-location="booking_page">Call or Text About a Group Visit</a>
+        <a class="btn btn--ghost" href="/groups-facilities/">More about Groups &amp; Facilities →</a>
       </div>
     </div>
   </section>
@@ -221,7 +241,7 @@
       <div>
         <h3>Explore</h3>
         <ul class="footer-links">
-          <li><a href="/massage-therapy/">Massage Therapy</a></li>
+          <li><a href="/massage-therapy/">In Clinic</a></li>
           <li><a href="/mobile-rmt/">Mobile RMT</a></li>
           <li><a href="/groups-facilities/">Groups &amp; Facilities</a></li>
           <li><a href="/about/">About Mike</a></li>
@@ -238,6 +258,6 @@
 
 <script src="/js/analytics.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/mobile-form.js"></script>
+<script src="/js/mobile-form.js?v=20260924-1"></script>
 </body>
 </html>
